@@ -19,4 +19,4 @@ def weather_dashboard():
 def render_resultados
     cityname = request.form['cityname']
 
-    api=
+    api= get_api_key(); 
