@@ -24,10 +24,16 @@ def render_resultados
     api = get_api_key(); 
 
     #consumir api 
+    #data contiene json con respuestas
     data = get_weather_results(cityname, api)
+    #imprimir  tempratura del json
+    temp = "{0:.2f}"format (data['main']['temp'])
+
+    
 
 
 #Consumir el servicio web 
+
 def get_weather_results (cityname, api_key)
 
     url = "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}".format(cityname, api_key)
@@ -41,4 +47,4 @@ def get_api_key():
     config = configparser.ConfigParser()
     config.read('config.ini')
     return config ['openweathermap'] ['api']
-    }
+    
