@@ -14,4 +14,9 @@ if _name_ == "__main__":
 def weather_dashboard():
     return render_template ('homme.html')
 
-    
+
+@app.route('/results')
+def render_resultados
+    cityname = request.form['cityname']
+
+    api=
