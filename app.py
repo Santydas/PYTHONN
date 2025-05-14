@@ -20,9 +20,20 @@ def weather_dashboard():
 def render_resultados
     cityname = request.form['cityname']
 
-
+    #Variable para almacenar el valor del api key del config.ini
     api = get_api_key(); 
 
+    #consumir api 
+    data = get_weather_results(cityname, api)
+
+
+#Consumir el servicio web 
+def get_weather_results (cityname, api_key)
+
+    url = "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}".format(cityname, api_key)
+
+    r= request.get(url)
+    return r.json
 
 #Funcion para consumir el servicio web  con el api key 
 def get_api_key():
