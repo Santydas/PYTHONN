@@ -16,8 +16,8 @@ def weather_dashboard():
 
 
 #ruta para saber la ciudad ingresada
-@app.route('/results')
-def render_resultados
+@app.route('/results',methods=['POST'])
+def render_resultados():
     cityname = request.form['cityname']
 
     #Variable para almacenar el valor del api key del config.ini
@@ -27,14 +27,23 @@ def render_resultados
     #data contiene json con respuestas
     data = get_weather_results(cityname, api)
     #imprimir  tempratura del json
-    temp = "{0:.2f}"format (data['main']['temp'])
+    temp = "{0:.2f}".format (data['main']['temp'])
+    #imprimir sesacion termica
+    feels_like = "{0:.2f}".format (data['main']['feels_like'])
+    #condicion de temperatura
+    weather = data ["weather"]['main']
+    location = data['name'] 
 
-    
+    #pintar el json de la respuesta
+
+    return render_template ('results.html', location=location,temp = temp, feels_like= feels_like, weather= weather)
+
+
 
 
 #Consumir el servicio web 
 
-def get_weather_results (cityname, api_key)
+def get_weather_results (cityname, api_key):
 
     url = "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}".format(cityname, api_key)
 
